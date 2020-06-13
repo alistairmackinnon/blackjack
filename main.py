@@ -43,9 +43,9 @@ def evaluate_score(input_lst):
 
 def blackjack_bust_check(input_score):
     if input_score == 21:
-        result = 'Blackjack!'
+        result = 'Blackjack'
     elif input_score > 21:
-        result = 'Bust!'
+        result = 'Bust'
     else:
         result = False
     return result
@@ -93,9 +93,18 @@ def main():
             break
     dealer_blackjack_bust = blackjack_bust_check(dealer_score)
 
-    if player_blackjack_bust:
-        print(f'Player Result: {player_blackjack_bust}... Score {player_score}')
+    if player_blackjack_bust == 'Blackjack' and not dealer_blackjack_bust == 'Blackjack':
+        print(f'Player wins - Blackjack')
+    elif player_blackjack_bust == 'Bust' and not dealer_blackjack_bust == 'Bust':
+        print(f'Dealer WIns - Player Bust')
+    elif (player_blackjack_bust == 'Bust' and dealer_blackjack_bust == 'Bust') or (player_score == dealer_score):
+        print(f'Draw')
+    elif player_score > dealer_score:
+        print('Winner')
+    elif dealer_score > player_score:
+        print('Loser')
     else:
-        print(f'Player Score = {player_score}')
+        print('Missing')
+
 
 main()
